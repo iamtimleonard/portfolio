@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Expire({ children, order }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(order === 1 ? true : false);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), (order - 1) * 2000);
