@@ -1,19 +1,35 @@
 {
   "name": "portfolio",
-  "private": true,
+  "version": "1.0.0",
+  "description": "My portfolio",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamtimleonard/portfolio.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "iamtimleonard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamtimleonard/portfolio/issues"
+  },
+  "homepage": "https://github.com/iamtimleonard/portfolio#readme",
   "dependencies": {
-    "next": "12.0.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "next": "^14.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.3"
+    "@types/node": "20.12.7",
+    "@types/react": "^18.2.79",
+    "typescript": "5.4.5"
   }
 }
