@@ -1,5 +1,5 @@
 function Page() {
-  return <h1>Hello, Next.js!</h1>;
+  return <h1>Games</h1>;
 }
 
 export default Page;

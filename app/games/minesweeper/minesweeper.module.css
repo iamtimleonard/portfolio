@@ -1,0 +1,36 @@
+.board {
+  border: 1px solid black;
+  width: fit-content;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.tile {
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  padding: 0.25rem 0.5rem;
+  background-color: #bfbfbf;
+  cursor: pointer;
+  color: transparent;
+}
+
+.clicked {
+  border-top: 5px solid #838383;
+  border-left: 5px solid #838383;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  padding: 0.25rem 0.5rem;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+
+.statusBar {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
