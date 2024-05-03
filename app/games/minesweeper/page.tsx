@@ -18,7 +18,7 @@ function Tile({ tile, rowNum, columnNum, onTileClick, onRightClick }) {
         onTileClick(event, tile, rowNum, columnNum);
       }}
       onContextMenuCapture={(event) =>
-        onRightClick(event, tile, rowNum, columnNum)
+        onRightClick(event, tile, rowNum, columnNum, !tile.isFlagged)
       }
     >
       {tile.isFlagged ? "⛳️" : tile.value}
@@ -99,16 +99,14 @@ function Page() {
     });
   };
 
-  const onRightClick = (event, tile, row, column) => {
+  const onRightClick = (event, tile, row, column, shouldAddFlag) => {
     event.preventDefault();
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
-      newLayout[row][column].isFlagged = true;
+      newLayout[row][column].isFlagged = shouldAddFlag;
       return { layout: newLayout, isInProgress: true };
     });
   };
-
-  console.log(gameState);
 
   return (
     <article className={styles.board}>
