@@ -19,6 +19,16 @@
   color: transparent;
 }
 
+.flagged {
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  padding: 0.25rem 0.5rem;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+
 .clicked {
   border-top: 5px solid #838383;
   border-left: 5px solid #838383;

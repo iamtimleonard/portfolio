@@ -3,19 +3,30 @@
 import { useState } from "react";
 import styles from "./minesweeper.module.css";
 
-function Tile({ tile, rowNum, columnNum, onTileClick }) {
+function Tile({ tile, rowNum, columnNum, onTileClick, onRightClick }) {
   return (
     <button
-      className={tile.isClicked ? styles.clicked : styles.tile}
+      className={
+        tile.isFlagged
+          ? styles.flagged
+          : tile.isClicked
+          ? styles.clicked
+          : styles.tile
+      }
       key={columnNum}
-      onClick={() => onTileClick(tile, rowNum, columnNum)}
+      onClick={(event) => {
+        onTileClick(event, tile, rowNum, columnNum);
+      }}
+      onContextMenuCapture={(event) =>
+        onRightClick(event, tile, rowNum, columnNum)
+      }
     >
-      {tile.value}
+      {tile.isFlagged ? "⛳️" : tile.value}
     </button>
   );
 }
 
-function Row({ row, rowNum, onTileClick }) {
+function Row({ row, rowNum, onTileClick, onRightClick }) {
   return (
     <div className={styles.row} key={rowNum}>
       {row.map((tile, columnNum) => {
@@ -25,6 +36,7 @@ function Row({ row, rowNum, onTileClick }) {
             rowNum={rowNum}
             columnNum={columnNum}
             onTileClick={onTileClick}
+            onRightClick={onRightClick}
             key={`${rowNum}-${columnNum}`}
           />
         );
@@ -77,7 +89,8 @@ function Page() {
 
   const [gameState, setGameState] = useState(game);
 
-  const onTileClick = (tile, row, column) => {
+  const onTileClick = (event, tile, row, column) => {
+    if (tile.isFlagged) return;
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
       newLayout[row][column].isClicked = true;
@@ -86,12 +99,29 @@ function Page() {
     });
   };
 
+  const onRightClick = (event, tile, row, column) => {
+    event.preventDefault();
+    setGameState((currentState) => {
+      const newLayout = [...currentState.layout];
+      newLayout[row][column].isFlagged = true;
+      return { layout: newLayout, isInProgress: true };
+    });
+  };
+
+  console.log(gameState);
+
   return (
     <article className={styles.board}>
       <StatusBar gameState={gameState} />
       {gameState.layout.map((row, idx) => {
         return (
-          <Row rowNum={idx} onTileClick={onTileClick} row={row} key={idx} />
+          <Row
+            rowNum={idx}
+            onTileClick={onTileClick}
+            onRightClick={onRightClick}
+            row={row}
+            key={idx}
+          />
         );
       })}
     </article>
