@@ -45,18 +45,25 @@ function Row({ row, rowNum, onTileClick, onRightClick }) {
   );
 }
 
-function StatusBar({ gameState }) {
+function StatusBar({ gameState, initializeGame }) {
   const minesLeft = gameState.layout.flat().reduce((count, tile) => {
     if (!tile.isFlagged && tile.value === "X") {
       return (count += 1);
     }
     return count;
   }, 0);
+
   return (
     <div className={styles.statusBar}>
       <div>{minesLeft}</div>
       <div>
-        <button>😬</button>
+        <button onClick={(event) => initializeGame()}>
+          {gameState.status === "lost"
+            ? "😵"
+            : gameState.status === "won"
+            ? "😎"
+            : "🙂"}
+        </button>
       </div>
       <div>Time</div>
     </div>
@@ -84,18 +91,20 @@ function Page() {
 
   const game = {
     layout,
-    isInProgress: false,
+    status: "notStarted",
   };
 
   const [gameState, setGameState] = useState(game);
 
   const onTileClick = (event, tile, row, column) => {
     if (tile.isFlagged) return;
+    if (gameState.status !== "inProgress") return;
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
       newLayout[row][column].isClicked = true;
-      const isInProgress = newLayout[row][column].value !== "X";
-      return { layout: newLayout, isInProgress };
+      const status =
+        newLayout[row][column].value === "X" ? "lost" : "inProgress";
+      return { layout: newLayout, status };
     });
   };
 
@@ -104,13 +113,19 @@ function Page() {
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
       newLayout[row][column].isFlagged = shouldAddFlag;
-      return { layout: newLayout, isInProgress: true };
+      return { layout: newLayout, status: "inProgress" };
+    });
+  };
+
+  const initializeGame = () => {
+    setGameState((state) => {
+      return { layout, status: "inProgress" };
     });
   };
 
   return (
     <article className={styles.board}>
-      <StatusBar gameState={gameState} />
+      <StatusBar gameState={gameState} initializeGame={initializeGame} />
       {gameState.layout.map((row, idx) => {
         return (
           <Row
