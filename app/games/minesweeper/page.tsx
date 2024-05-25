@@ -65,11 +65,12 @@ function StatusBar({ gameState, initializeGame }) {
             : "🙂"}
         </button>
       </div>
-      <div>Time</div>
+      <div>{gameState.time}</div>
     </div>
   );
 }
 
+let timer;
 function Page() {
   const layout = [
     [
@@ -92,34 +93,61 @@ function Page() {
   const game = {
     layout,
     status: "notStarted",
+    time: 0,
   };
 
   const [gameState, setGameState] = useState(game);
 
   const onTileClick = (event, tile, row, column) => {
     if (tile.isFlagged) return;
-    if (gameState.status !== "inProgress") return;
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
       newLayout[row][column].isClicked = true;
-      const status =
-        newLayout[row][column].value === "X" ? "lost" : "inProgress";
-      return { layout: newLayout, status };
+      const lost = newLayout[row][column].value === "X";
+      const won =
+        newLayout.flat().reduce((total, { value, isClicked }) => {
+          if (value !== "X" && !isClicked) total++;
+          return total;
+        }, 0) === 0;
+
+      if ((lost || won) && timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      if (lost) {
+        return { ...currentState, layout: newLayout, status: "lost" };
+      }
+      if (won) {
+        return { ...currentState, layout: newLayout, status: "won" };
+      }
+      if (!timer) timer = setInterval(updateTime, 1000);
+      return { ...currentState, layout: newLayout, status: "inProgress" };
     });
   };
 
   const onRightClick = (event, tile, row, column, shouldAddFlag) => {
     event.preventDefault();
     setGameState((currentState) => {
+      if (currentState.status === "lost") return { ...currentState };
       const newLayout = [...currentState.layout];
       newLayout[row][column].isFlagged = shouldAddFlag;
-      return { layout: newLayout, status: "inProgress" };
+      return { ...currentState, layout: newLayout, status: "inProgress" };
+    });
+  };
+
+  const updateTime = () => {
+    setGameState((state) => {
+      return { ...state, time: state.time++ };
     });
   };
 
   const initializeGame = () => {
     setGameState((state) => {
-      return { layout, status: "inProgress" };
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      return { ...state, layout, time: 0, status: "inProgress" };
     });
   };
 
