@@ -23,7 +23,7 @@ function Tile({ tile, rowNum, columnNum, onTileClick, onRightClick }) {
         onRightClick(event, tile, rowNum, columnNum, !tile.isFlagged)
       }
     >
-      {tile.isFlagged ? "⛳️" : tile.value}
+      {tile.isFlagged ? "⛳️" : tile.value ? tile.value : ""}
     </button>
   );
 }
@@ -150,6 +150,24 @@ function Page() {
       return;
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
+      const recurse = (row: number, column: number) => {
+        if (!newLayout[row]?.[column]) return;
+        if (newLayout[row][column].value === "X") return;
+        if (newLayout[row][column].isClicked) return;
+        newLayout[row][column].isClicked = true;
+        if ((newLayout[row][column].value as number) > 0) {
+          return;
+        }
+        recurse(row - 1, column - 1);
+        recurse(row - 1, column);
+        recurse(row - 1, column + 1);
+        recurse(row, column - 1);
+        recurse(row, column + 1);
+        recurse(row + 1, column - 1);
+        recurse(row + 1, column);
+        recurse(row + 1, column + 1);
+      };
+      recurse(row, column);
       newLayout[row][column].isClicked = true;
       const lost = newLayout[row][column].value === "X";
       const won =
