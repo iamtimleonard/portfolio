@@ -3,6 +3,8 @@
 import { useState } from "react";
 import styles from "./minesweeper.module.css";
 
+let timer: NodeJS.Timeout;
+
 function Tile({ tile, rowNum, columnNum, onTileClick, onRightClick }) {
   return (
     <button
@@ -46,16 +48,27 @@ function Row({ row, rowNum, onTileClick, onRightClick }) {
 }
 
 function StatusBar({ gameState, initializeGame }) {
-  const minesLeft = gameState.layout.flat().reduce((count, tile) => {
-    if (!tile.isFlagged && tile.value === "X") {
-      return (count += 1);
-    }
-    return count;
-  }, 0);
+  const minesLeft = gameState.layout
+    .flat()
+    .reduce(
+      (count: number, tile: { value: number | "X"; isFlagged: boolean }) => {
+        if (tile.value === "X") {
+          console.log("adding");
+          count++;
+        }
+        if (tile.isFlagged) {
+          console.log("subtracting");
+          count--;
+        }
+        console.log(count);
+        return count;
+      },
+      0
+    );
 
   return (
     <div className={styles.statusBar}>
-      <div>{minesLeft}</div>
+      <div>{minesLeft < 0 ? 0 : minesLeft}</div>
       <div>
         <button onClick={(event) => initializeGame()}>
           {gameState.status === "lost"
@@ -70,7 +83,6 @@ function StatusBar({ gameState, initializeGame }) {
   );
 }
 
-let timer;
 function Page() {
   const layout = [
     [
