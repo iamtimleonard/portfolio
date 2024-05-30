@@ -52,15 +52,8 @@ function StatusBar({ gameState, initializeGame }) {
     .flat()
     .reduce(
       (count: number, tile: { value: number | "X"; isFlagged: boolean }) => {
-        if (tile.value === "X") {
-          console.log("adding");
-          count++;
-        }
-        if (tile.isFlagged) {
-          console.log("subtracting");
-          count--;
-        }
-        console.log(count);
+        if (tile.value === "X") count++;
+        if (tile.isFlagged) count--;
         return count;
       },
       0
@@ -84,34 +77,77 @@ function StatusBar({ gameState, initializeGame }) {
 }
 
 function Page() {
-  const layout = [
-    [
-      { value: 1, isClicked: false, isFlagged: false },
-      { value: 2, isClicked: false, isFlagged: false },
-      { value: "X", isClicked: false, isFlagged: false },
-    ],
-    [
-      { value: "X", isClicked: false, isFlagged: false },
-      { value: 3, isClicked: false, isFlagged: false },
-      { value: 2, isClicked: false, isFlagged: false },
-    ],
-    [
-      { value: 2, isClicked: false, isFlagged: false },
-      { value: "X", isClicked: false, isFlagged: false },
-      { value: 1, isClicked: false, isFlagged: false },
-    ],
-  ];
+  const basicConfig = {
+    beginner: {
+      width: 9,
+      height: 9,
+      mines: 10,
+    },
+    intermediate: {
+      width: 16,
+      height: 16,
+      mines: 40,
+    },
+    expert: {
+      width: 16,
+      height: 30,
+      mines: 99,
+    },
+  };
+
+  const [config, setConfig] = useState(basicConfig.beginner);
+
+  const buildLayout = (config: {
+    width: number;
+    height: number;
+    mines: number;
+  }): { value: number | "X"; isClicked: boolean; isFlagged: boolean }[][] => {
+    const basicTile = { value: 0, isClicked: false, isFlagged: false };
+    const layout = [];
+    for (let row = 0; row < config.height; row++) {
+      layout.push([]);
+      for (let column = 0; column < config.width; column++) {
+        layout[row][column] = { ...basicTile };
+      }
+    }
+    for (let minesLeft = config.mines; minesLeft > 0; minesLeft--) {
+      let randomRow = Math.floor(Math.random() * config.height);
+      let randomColumn = Math.floor(Math.random() * config.width);
+      layout[randomRow][randomColumn].value = "X";
+    }
+    for (let row = 0; row < config.height; row++) {
+      for (let column = 0; column < config.width; column++) {
+        let value = 0;
+        layout[row - 1]?.[column - 1]?.value === "X" ? value++ : null;
+        layout[row - 1]?.[column]?.value === "X" ? value++ : null;
+        layout[row - 1]?.[column + 1]?.value === "X" ? value++ : null;
+        layout[row]?.[column - 1]?.value === "X" ? value++ : null;
+        layout[row]?.[column + 1]?.value === "X" ? value++ : null;
+        layout[row + 1]?.[column - 1]?.value === "X" ? value++ : null;
+        layout[row + 1]?.[column]?.value === "X" ? value++ : null;
+        layout[row + 1]?.[column + 1]?.value === "X" ? value++ : null;
+        layout[row][column].value === "X"
+          ? null
+          : (layout[row][column].value = value);
+      }
+    }
+    return layout;
+  };
 
   const game = {
-    layout,
+    layout: buildLayout(config),
     status: "notStarted",
     time: 0,
   };
 
   const [gameState, setGameState] = useState(game);
-
   const onTileClick = (event, tile, row, column) => {
-    if (tile.isFlagged) return;
+    if (
+      tile.isFlagged ||
+      gameState.status === "won" ||
+      gameState.status === "lost"
+    )
+      return;
     setGameState((currentState) => {
       const newLayout = [...currentState.layout];
       newLayout[row][column].isClicked = true;
@@ -159,7 +195,12 @@ function Page() {
         clearInterval(timer);
         timer = null;
       }
-      return { ...state, layout, time: 0, status: "inProgress" };
+      return {
+        ...state,
+        layout: buildLayout(config),
+        time: 0,
+        status: "inProgress",
+      };
     });
   };
 
