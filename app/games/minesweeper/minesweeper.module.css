@@ -5,7 +5,7 @@
 
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .tile {
@@ -13,6 +13,7 @@
   border-left: 5px solid white;
   border-right: 5px solid #838383;
   border-bottom: 5px solid #838383;
+  width: 2rem;
   padding: 0.25rem 0.5rem;
   background-color: #bfbfbf;
   cursor: pointer;
@@ -24,7 +25,8 @@
   border-left: 5px solid white;
   border-right: 5px solid #838383;
   border-bottom: 5px solid #838383;
-  padding: 0.25rem 0.5rem;
+  width: 2rem;
+  text-align: center;
   background-color: #bfbfbf;
   cursor: pointer;
 }
@@ -34,6 +36,7 @@
   border-left: 5px solid #838383;
   border-right: 5px solid #838383;
   border-bottom: 5px solid #838383;
+  width: 2rem;
   padding: 0.25rem 0.5rem;
   background-color: #bfbfbf;
   cursor: pointer;
