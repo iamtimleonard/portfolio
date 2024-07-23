@@ -1,0 +1,88 @@
+.board {
+  background-color: #bfbfbf;
+  padding: 0.5rem;
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  width: fit-content;
+}
+
+.field {
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+  border-left: 5px solid #838383;
+  border-top: 5px solid #838383;
+  margin-top: 0.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tile {
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  width: 2rem;
+  height: 2.1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #bfbfbf;
+  cursor: pointer;
+  color: transparent;
+}
+
+.flagged {
+  border-top: 5px solid white;
+  border-left: 5px solid white;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  width: 2rem;
+  text-align: center;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+
+.clicked {
+  border-top: 5px solid #838383;
+  border-left: 5px solid #838383;
+  border-right: 5px solid #838383;
+  border-bottom: 5px solid #838383;
+  width: 2rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+
+.statusBar {
+  border-bottom: 5px solid white;
+  border-right: 5px solid white;
+  border-left: 5px solid #838383;
+  border-top: 5px solid #838383;
+  display: flex;
+  justify-content: space-between;
+  background-color: #bfbfbf;
+}
+
+.counter {
+  margin: 0.5rem;
+  background-color: black;
+  color: red;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid #838383;
+  border-top: 1px solid #838383;
+}
+
+.initializer {
+  margin: 0.5rem;
+  border-top: 0.1rem solid white;
+  border-left: 0.1rem solid white;
+  border-right: 0.1rem solid #838383;
+  border-bottom: 0.1rem solid #838383;
+  background-color: #bfbfbf;
+  font-size: 1.25rem;
+}
