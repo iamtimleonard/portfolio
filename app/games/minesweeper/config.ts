@@ -10,8 +10,8 @@ export const basicConfig = {
     mines: 40,
   },
   expert: {
-    width: 16,
-    height: 30,
+    width: 30,
+    height: 16,
     mines: 99,
   },
 };

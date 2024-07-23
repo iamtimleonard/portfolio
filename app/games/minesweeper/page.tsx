@@ -169,21 +169,42 @@ function Page() {
     });
   };
 
+  const updateConfig = (difficulty: keyof typeof basicConfig) => {
+    setConfig(basicConfig[difficulty]);
+    setGameState((state) => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      return {
+        ...state,
+        layout: buildLayout(basicConfig[difficulty]),
+        time: 0,
+        status: "notStarted",
+      };
+    });
+  };
+
   return (
-    <article className={styles.board}>
-      <StatusBar gameState={gameState} initializeGame={initializeGame} />
-      {gameState.layout.map((row, idx) => {
-        return (
-          <Row
-            rowNum={idx}
-            onTileClick={onTileClick}
-            onRightClick={onRightClick}
-            row={row}
-            key={idx}
-          />
-        );
-      })}
-    </article>
+    <>
+      <article className={styles.board}>
+        <StatusBar gameState={gameState} initializeGame={initializeGame} />
+        {gameState.layout.map((row, idx) => {
+          return (
+            <Row
+              rowNum={idx}
+              onTileClick={onTileClick}
+              onRightClick={onRightClick}
+              row={row}
+              key={idx}
+            />
+          );
+        })}
+      </article>
+      <button onClick={() => updateConfig("beginner")}>beginner</button>
+      <button onClick={() => updateConfig("intermediate")}>intermediate</button>
+      <button onClick={() => updateConfig("expert")}>expert</button>
+    </>
   );
 }
 
