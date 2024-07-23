@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import styles from "./minesweeper.module.css";
+import { basicConfig } from "./config";
+import { buildLayout } from "./utils";
 
 let timer: NodeJS.Timeout;
 
@@ -77,65 +79,10 @@ function StatusBar({ gameState, initializeGame }) {
 }
 
 function Page() {
-  const basicConfig = {
-    beginner: {
-      width: 9,
-      height: 9,
-      mines: 10,
-    },
-    intermediate: {
-      width: 16,
-      height: 16,
-      mines: 40,
-    },
-    expert: {
-      width: 16,
-      height: 30,
-      mines: 99,
-    },
-  };
-
   const [config, setConfig] = useState(basicConfig.beginner);
 
-  const buildLayout = (config: {
-    width: number;
-    height: number;
-    mines: number;
-  }): { value: number | "X"; isClicked: boolean; isFlagged: boolean }[][] => {
-    const basicTile = { value: 0, isClicked: false, isFlagged: false };
-    const layout = [];
-    for (let row = 0; row < config.height; row++) {
-      layout.push([]);
-      for (let column = 0; column < config.width; column++) {
-        layout[row][column] = { ...basicTile };
-      }
-    }
-    for (let minesLeft = config.mines; minesLeft > 0; minesLeft--) {
-      let randomRow = Math.floor(Math.random() * config.height);
-      let randomColumn = Math.floor(Math.random() * config.width);
-      layout[randomRow][randomColumn].value = "X";
-    }
-    for (let row = 0; row < config.height; row++) {
-      for (let column = 0; column < config.width; column++) {
-        let value = 0;
-        layout[row - 1]?.[column - 1]?.value === "X" ? value++ : null;
-        layout[row - 1]?.[column]?.value === "X" ? value++ : null;
-        layout[row - 1]?.[column + 1]?.value === "X" ? value++ : null;
-        layout[row]?.[column - 1]?.value === "X" ? value++ : null;
-        layout[row]?.[column + 1]?.value === "X" ? value++ : null;
-        layout[row + 1]?.[column - 1]?.value === "X" ? value++ : null;
-        layout[row + 1]?.[column]?.value === "X" ? value++ : null;
-        layout[row + 1]?.[column + 1]?.value === "X" ? value++ : null;
-        layout[row][column].value === "X"
-          ? null
-          : (layout[row][column].value = value);
-      }
-    }
-    return layout;
-  };
-
   const game = {
-    layout: buildLayout(config),
+    layout: [],
     status: "notStarted",
     time: 0,
   };
