@@ -50,6 +50,13 @@ function Row({ row, rowNum, onTileClick, onRightClick }) {
 }
 
 function StatusBar({ gameState, initializeGame }) {
+  const formatCountForCounter = (count: number) => {
+    const res = ["0", "0", "0"];
+    const current = count.toString().split("").reverse();
+    current.forEach((digit, idx) => (res[idx] = digit));
+    return res.reverse();
+  };
+
   const minesLeft = gameState.layout
     .flat()
     .reduce(
@@ -63,9 +70,16 @@ function StatusBar({ gameState, initializeGame }) {
 
   return (
     <div className={styles.statusBar}>
-      <div>{minesLeft < 0 ? 0 : minesLeft}</div>
+      <div className={styles.counter}>
+        {minesLeft < 0
+          ? formatCountForCounter(0)
+          : formatCountForCounter(minesLeft)}
+      </div>
       <div>
-        <button onClick={(event) => initializeGame()}>
+        <button
+          onClick={(event) => initializeGame()}
+          className={styles.initializer}
+        >
           {gameState.status === "lost"
             ? "😵"
             : gameState.status === "won"
@@ -73,7 +87,9 @@ function StatusBar({ gameState, initializeGame }) {
             : "🙂"}
         </button>
       </div>
-      <div>{gameState.time}</div>
+      <div className={styles.counter}>
+        {formatCountForCounter(gameState.time)}
+      </div>
     </div>
   );
 }
@@ -189,17 +205,19 @@ function Page() {
     <>
       <article className={styles.board}>
         <StatusBar gameState={gameState} initializeGame={initializeGame} />
-        {gameState.layout.map((row, idx) => {
-          return (
-            <Row
-              rowNum={idx}
-              onTileClick={onTileClick}
-              onRightClick={onRightClick}
-              row={row}
-              key={idx}
-            />
-          );
-        })}
+        <div className={styles.field}>
+          {gameState.layout.map((row, idx) => {
+            return (
+              <Row
+                rowNum={idx}
+                onTileClick={onTileClick}
+                onRightClick={onRightClick}
+                row={row}
+                key={idx}
+              />
+            );
+          })}
+        </div>
       </article>
       <button onClick={() => updateConfig("beginner")}>beginner</button>
       <button onClick={() => updateConfig("intermediate")}>intermediate</button>
