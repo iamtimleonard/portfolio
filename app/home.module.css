@@ -1,0 +1,39 @@
+.gridContainer {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "name name skill"
+    "bio contact skill"
+    "bio misc misc";
+  gap: 10px;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 95%;
+}
+
+.nameCard {
+  border: 1px solid black;
+  grid-area: name;
+}
+
+.skillCard {
+  border: 1px solid green;
+  grid-area: skill;
+}
+.contactCard {
+  border: 1px solid red;
+  grid-area: contact;
+}
+
+.bioCard {
+  border: 1px solid purple;
+  grid-area: bio;
+}
+
+.miscCard {
+  border: 1px solid teal;
+  grid-area: misc;
+}
