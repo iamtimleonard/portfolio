@@ -12,34 +12,34 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: black;
+  background-color: #4d4d4f;
 }
 
 .card {
   border-radius: 1rem;
-  background-color: white;
+  padding: 1rem;
 }
 
 .nameCard {
-  border: 1px solid black;
   grid-area: name;
+  background-color: #e9e4d4;
 }
 
 .skillCard {
-  border: 1px solid green;
+  background-color: mistyrose;
   grid-area: skill;
 }
 .contactCard {
-  border: 1px solid red;
+  background-color: rosybrown;
   grid-area: contact;
 }
 
 .bioCard {
-  border: 1px solid purple;
+  background-color: darkkhaki;
   grid-area: bio;
 }
 
 .miscCard {
-  border: 1px solid teal;
+  background-color: tan;
   grid-area: misc;
 }
