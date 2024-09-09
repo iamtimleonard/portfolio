@@ -43,3 +43,13 @@
   background-color: tan;
   grid-area: misc;
 }
+
+@media only screen and (max-width: 768px) {
+  .gridContainer {
+    grid-template-areas:
+      "name name name"
+      "bio bio bio"
+      "skill skill contact"
+      "misc misc misc";
+  }
+}
