@@ -3,43 +3,65 @@
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
-    "name name skill"
-    "bio contact contact"
-    "bio misc misc";
+    "name skill epoxy"
+    "bio pstem epoxy"
+    "bio pstem misc";
   gap: 10px;
   padding: 10px;
   height: 100%;
   background-color: #4d4d4f;
   margin: 0;
+  overflow: auto;
 }
 
 .card {
   border-radius: 1rem;
   padding: 1rem;
+  background-color: tan;
+}
+
+.card ul {
+  padding-left: 1rem;
 }
 
 .nameCard {
   grid-area: name;
-  background-color: #e9e4d4;
+  display: flex;
+  flex-direction: column;
+}
+
+.card article {
+  flex: 1;
+}
+
+.card footer {
+  text-align: center;
 }
 
 .skillCard {
-  background-color: mistyrose;
   grid-area: skill;
-}
-.contactCard {
-  background-color: rosybrown;
-  grid-area: contact;
 }
 
 .bioCard {
-  background-color: darkkhaki;
   grid-area: bio;
 }
 
 .miscCard {
-  background-color: tan;
   grid-area: misc;
+}
+
+.epoxy {
+  grid-area: epoxy;
+}
+
+.pstem {
+  grid-area: pstem;
+}
+
+.reactIcons {
+  color: black;
+  font-size: 2.5rem;
+  margin: 2rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -47,7 +69,7 @@
     grid-template-areas:
       "name name name"
       "bio bio bio"
-      "skill skill contact"
+      "skill skill skill"
       "misc misc misc";
   }
 }
