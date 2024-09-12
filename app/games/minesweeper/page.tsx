@@ -203,6 +203,24 @@ function Page() {
 
   return (
     <>
+      <button
+        onClick={() => updateConfig("beginner")}
+        className={styles.difficultyButton}
+      >
+        beginner
+      </button>
+      <button
+        onClick={() => updateConfig("intermediate")}
+        className={styles.difficultyButton}
+      >
+        intermediate
+      </button>
+      <button
+        onClick={() => updateConfig("expert")}
+        className={styles.difficultyButton}
+      >
+        expert
+      </button>
       <article className={styles.board}>
         <StatusBar gameState={gameState} initializeGame={initializeGame} />
         <div className={styles.field}>
@@ -219,9 +237,6 @@ function Page() {
           })}
         </div>
       </article>
-      <button onClick={() => updateConfig("beginner")}>beginner</button>
-      <button onClick={() => updateConfig("intermediate")}>intermediate</button>
-      <button onClick={() => updateConfig("expert")}>expert</button>
     </>
   );
 }

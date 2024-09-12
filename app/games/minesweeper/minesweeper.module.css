@@ -85,4 +85,14 @@
   border-bottom: 0.1rem solid #838383;
   background-color: #bfbfbf;
   font-size: 1.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.difficultyButton {
+  border-top: 0.1rem solid white;
+  border-left: 0.1rem solid white;
+  border-right: 0.1rem solid #838383;
+  border-bottom: 0.1rem solid #838383;
+  background-color: #bfbfbf;
+  padding: 0.25rem 0.5rem;
 }
