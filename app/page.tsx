@@ -4,6 +4,8 @@ import styles from "./home.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { IconContext } from "react-icons";
 import Link from "next/link";
+import Image from "next/image";
+import encompassLogo from "../public/logo-encompass.gif";
 
 function Page() {
   return (
@@ -72,7 +74,42 @@ function Page() {
             </figure>
           </article>
         </div>
-        <div className={`${styles.card} ${styles.pstem}`}></div>
+        <div className={`${styles.card} ${styles.pstem}`}>
+          <header>
+            <Image src={encompassLogo} alt="logo" />
+          </header>
+          <article>
+            <p>
+              At{" "}
+              <Link href="https://www.21pstem.org/" target="">
+                21PSTEM
+              </Link>
+              , I worked on a project called EnCOMPASS, which fell under the
+              purview of{" "}
+              <Link href="https://mathematicalthinking.org/">
+                Mathematical Thinking
+              </Link>
+              . The purpose of the project is to encourage student collaboration
+              in the learning process. When using the app, students are able to
+              view one anothers' math work and leave comments for each other.
+            </p>
+            <p>
+              As the sole developer on this legacy project, it was my
+              responsibility to define features, architect solutions, and to
+              assign priority to stakeholder requests. My main efforts there
+              were:
+              <ul>
+                <li>
+                  update the legacy codebase to modern JavaScript, including
+                  migrating to Ember 3
+                </li>
+                <li>improve the main dashboard UI</li>
+                <li>develop a set of data visualizations for instructors</li>
+              </ul>
+            </p>
+            <p>I learned a ton during my time at 21PSTEM.</p>
+          </article>
+        </div>
         <div className={`${styles.card} ${styles.epoxy}`}></div>
         <div className={`${styles.miscCard} ${styles.card}`}>
           <Link href="/games">Games</Link>

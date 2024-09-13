@@ -30,8 +30,14 @@
   flex-direction: column;
 }
 
+.card header {
+  text-align: center;
+  margin: 1rem;
+}
+
 .card article {
   flex: 1;
+  margin: 1rem;
 }
 
 .card footer {
