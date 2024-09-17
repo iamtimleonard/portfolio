@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 import Link from "next/link";
 import Image from "next/image";
 import encompassLogo from "../public/logo-encompass.gif";
+import epoxyLogo from "../public/epoxy.jpeg";
 
 function Page() {
   return (
@@ -98,19 +99,34 @@ function Page() {
               responsibility to define features, architect solutions, and to
               assign priority to stakeholder requests. My main efforts there
               were:
-              <ul>
-                <li>
-                  update the legacy codebase to modern JavaScript, including
-                  migrating to Ember 3
-                </li>
-                <li>improve the main dashboard UI</li>
-                <li>develop a set of data visualizations for instructors</li>
-              </ul>
             </p>
+            <ul>
+              <li>
+                update the legacy codebase to modern JavaScript, including
+                migrating to Ember 3
+              </li>
+              <li>improve the main dashboard UI</li>
+              <li>develop a set of data visualizations for instructors</li>
+            </ul>
             <p>I learned a ton during my time at 21PSTEM.</p>
           </article>
         </div>
-        <div className={`${styles.card} ${styles.epoxy}`}></div>
+        <div className={`${styles.card} ${styles.epoxy}`}>
+          <header>
+            <Image src={epoxyLogo} alt="epoxy.ai logo" width={100} />
+          </header>
+          <article>
+            <p>
+              I am currently a full stack developer at{" "}
+              <Link href="https://epoxy.ai" target="">
+                Epoxy.ai
+              </Link>
+              , where I work on a suite of tools for the sports betting
+              industry. During my time at Epoxy, I have grown familiar with
+              using AWS to architect serverless applications.
+            </p>
+          </article>
+        </div>
         <div className={`${styles.miscCard} ${styles.card}`}>
           <Link href="/games">Games</Link>
         </div>
