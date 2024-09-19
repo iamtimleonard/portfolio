@@ -128,7 +128,26 @@ function Page() {
           </article>
         </div>
         <div className={`${styles.miscCard} ${styles.card}`}>
-          <Link href="/games">Games</Link>
+          <header>
+            <h3>Other Projects</h3>
+          </header>
+          <article>
+            <ul>
+              <li>
+                <Link href="/games">Games</Link>
+              </li>
+              <li>
+                <Link href="https://border-radius.iamtimleonard.vercel.app/">
+                  Border Radius Previewer
+                </Link>
+              </li>
+              <li>
+                <Link href="https://quiz-app-iamtimleonard.vercel.app/">
+                  Quiz App
+                </Link>
+              </li>
+            </ul>
+          </article>
         </div>
       </main>
     </IconContext.Provider>
