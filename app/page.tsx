@@ -1,7 +1,16 @@
 "use client";
 
 import styles from "./home.module.css";
-import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { DiMongodb } from "react-icons/di";
+import {
+  FaAws,
+  FaEmber,
+  FaGithub,
+  FaLinkedin,
+  FaNodeJs,
+  FaReact,
+} from "react-icons/fa6";
+import { SiGit, SiRedis, SiSvelte } from "react-icons/si";
 import { IconContext } from "react-icons";
 import Link from "next/link";
 import Image from "next/image";
@@ -28,18 +37,32 @@ function Page() {
         </div>
         <div className={`${styles.skillCard} ${styles.card}`}>
           <article>
-            <figure>
-              <figcaption>my skills:</figcaption>
-              <ul>
-                <li>Node.js</li>
-                <li>AWS</li>
-                <li>MongoDB</li>
-                <li>Redis</li>
-                <li>React</li>
-                <li>Ember</li>
-                <li>Svelte</li>
-              </ul>
-            </figure>
+            <ul>
+              <li>
+                <FaNodeJs title="Node.js" />
+              </li>
+              <li>
+                <FaAws title="AWS" />
+              </li>
+              <li>
+                <DiMongodb title="MongoDB" />
+              </li>
+              <li>
+                <SiRedis title="Redis" />
+              </li>
+              <li>
+                <FaReact title="React" />
+              </li>
+              <li>
+                <FaEmber title="Ember" />
+              </li>
+              <li>
+                <SiSvelte title="Svelte" />
+              </li>
+              <li>
+                <SiGit title="Git" />
+              </li>
+            </ul>
           </article>
         </div>
         <div className={`${styles.bioCard} ${styles.card}`}>
