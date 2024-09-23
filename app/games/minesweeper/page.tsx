@@ -7,9 +7,24 @@ import { buildLayout } from "./utils";
 
 let timer: NodeJS.Timeout;
 
+const colors = {
+  0: "#000000",
+  1: "#1d00ff",
+  2: "#008100",
+  3: "#fe0300",
+  4: "#090081",
+  5: "#800000",
+  6: "#2e8189",
+  7: "#282828",
+  8: "#848484",
+};
+
 function Tile({ tile, rowNum, columnNum, onTileClick, onRightClick }) {
   return (
     <button
+      style={
+        tile.isClicked ? { color: colors[tile.value], fontWeight: 700 } : {}
+      }
       className={
         tile.isFlagged
           ? styles.flagged
@@ -60,8 +75,8 @@ function StatusBar({ gameState, initializeGame }) {
   const minesLeft = gameState.layout
     .flat()
     .reduce(
-      (count: number, tile: { value: number | "X"; isFlagged: boolean }) => {
-        if (tile.value === "X") count++;
+      (count: number, tile: { value: number | "💣"; isFlagged: boolean }) => {
+        if (tile.value === "💣") count++;
         if (tile.isFlagged) count--;
         return count;
       },
@@ -115,7 +130,7 @@ function Page() {
       const newLayout = [...currentState.layout];
       const recurse = (row: number, column: number) => {
         if (!newLayout[row]?.[column]) return;
-        if (newLayout[row][column].value === "X") return;
+        if (newLayout[row][column].value === "💣") return;
         if (newLayout[row][column].isClicked) return;
         newLayout[row][column].isClicked = true;
         if ((newLayout[row][column].value as number) > 0) {
@@ -132,10 +147,10 @@ function Page() {
       };
       recurse(row, column);
       newLayout[row][column].isClicked = true;
-      const lost = newLayout[row][column].value === "X";
+      const lost = newLayout[row][column].value === "💣";
       const won =
         newLayout.flat().reduce((total, { value, isClicked }) => {
-          if (value !== "X" && !isClicked) total++;
+          if (value !== "💣" && !isClicked) total++;
           return total;
         }, 0) === 0;
 

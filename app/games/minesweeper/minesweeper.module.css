@@ -32,6 +32,7 @@
   background-color: #bfbfbf;
   cursor: pointer;
   color: transparent;
+  font-family: "Monaco";
 }
 
 .flagged {
@@ -46,11 +47,12 @@
 }
 
 .clicked {
-  border-top: 5px solid #838383;
-  border-left: 5px solid #838383;
-  border-right: 5px solid #838383;
-  border-bottom: 5px solid #838383;
+  border-top: 2px solid #838383;
+  border-left: 2px solid #838383;
+  border-right: 2px solid #838383;
+  border-bottom: 2px solid #838383;
   width: 2rem;
+  height: 2.1rem;
   padding: 0.25rem 0.5rem;
   background-color: #bfbfbf;
   cursor: pointer;
@@ -70,7 +72,7 @@
   margin: 0.5rem;
   background-color: black;
   color: red;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border-bottom: 1px solid white;
   border-right: 1px solid white;
   border-left: 1px solid #838383;

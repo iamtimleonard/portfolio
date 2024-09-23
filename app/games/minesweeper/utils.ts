@@ -15,23 +15,23 @@ export const buildLayout = (config: {
   while (minesLeft > 0) {
     let randomRow = Math.floor(Math.random() * config.height);
     let randomColumn = Math.floor(Math.random() * config.width);
-    if (layout[randomRow][randomColumn].value !== "X") {
-      layout[randomRow][randomColumn].value = "X";
+    if (layout[randomRow][randomColumn].value !== "💣") {
+      layout[randomRow][randomColumn].value = "💣";
       minesLeft--;
     }
   }
   for (let row = 0; row < config.height; row++) {
     for (let column = 0; column < config.width; column++) {
       let value = 0;
-      layout[row - 1]?.[column - 1]?.value === "X" ? value++ : null;
-      layout[row - 1]?.[column]?.value === "X" ? value++ : null;
-      layout[row - 1]?.[column + 1]?.value === "X" ? value++ : null;
-      layout[row]?.[column - 1]?.value === "X" ? value++ : null;
-      layout[row]?.[column + 1]?.value === "X" ? value++ : null;
-      layout[row + 1]?.[column - 1]?.value === "X" ? value++ : null;
-      layout[row + 1]?.[column]?.value === "X" ? value++ : null;
-      layout[row + 1]?.[column + 1]?.value === "X" ? value++ : null;
-      layout[row][column].value === "X"
+      layout[row - 1]?.[column - 1]?.value === "💣" ? value++ : null;
+      layout[row - 1]?.[column]?.value === "💣" ? value++ : null;
+      layout[row - 1]?.[column + 1]?.value === "💣" ? value++ : null;
+      layout[row]?.[column - 1]?.value === "💣" ? value++ : null;
+      layout[row]?.[column + 1]?.value === "💣" ? value++ : null;
+      layout[row + 1]?.[column - 1]?.value === "💣" ? value++ : null;
+      layout[row + 1]?.[column]?.value === "💣" ? value++ : null;
+      layout[row + 1]?.[column + 1]?.value === "💣" ? value++ : null;
+      layout[row][column].value === "💣"
         ? null
         : (layout[row][column].value = value);
     }
