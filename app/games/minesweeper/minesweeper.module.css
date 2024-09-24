@@ -1,3 +1,9 @@
+.gameContainer {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .board {
   background-color: #bfbfbf;
   padding: 0.5rem;
@@ -6,6 +12,7 @@
   border-right: 5px solid #838383;
   border-bottom: 5px solid #838383;
   width: fit-content;
+  margin: 15px;
 }
 
 .field {
@@ -88,6 +95,10 @@
   background-color: #bfbfbf;
   font-size: 1.25rem;
   padding: 0.25rem 0.5rem;
+}
+
+.difficultyRow {
+  margin: 5px;
 }
 
 .difficultyButton {

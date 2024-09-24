@@ -217,25 +217,27 @@ function Page() {
   };
 
   return (
-    <>
-      <button
-        onClick={() => updateConfig("beginner")}
-        className={styles.difficultyButton}
-      >
-        beginner
-      </button>
-      <button
-        onClick={() => updateConfig("intermediate")}
-        className={styles.difficultyButton}
-      >
-        intermediate
-      </button>
-      <button
-        onClick={() => updateConfig("expert")}
-        className={styles.difficultyButton}
-      >
-        expert
-      </button>
+    <div className={styles.gameContainer}>
+      <div className={styles.difficultyRow}>
+        <button
+          onClick={() => updateConfig("beginner")}
+          className={styles.difficultyButton}
+        >
+          beginner
+        </button>
+        <button
+          onClick={() => updateConfig("intermediate")}
+          className={styles.difficultyButton}
+        >
+          intermediate
+        </button>
+        <button
+          onClick={() => updateConfig("expert")}
+          className={styles.difficultyButton}
+        >
+          expert
+        </button>
+      </div>
       <article className={styles.board}>
         <StatusBar gameState={gameState} initializeGame={initializeGame} />
         <div className={styles.field}>
@@ -252,7 +254,7 @@ function Page() {
           })}
         </div>
       </article>
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,15 @@
+.gamesContainer {
+  display: flex;
+  height: 100%;
+}
+
+.gamesList {
+  width: 20%;
+  height: 100%;
+  padding: 2rem;
+}
+
+.game {
+  width: 80%;
+  padding: 20px;
+}
