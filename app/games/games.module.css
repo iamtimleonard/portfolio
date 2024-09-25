@@ -1,15 +1,21 @@
 .gamesContainer {
   display: flex;
   height: 100%;
+  background-color: #4d4d4f;
 }
 
 .gamesList {
   width: 20%;
-  height: 100%;
   padding: 2rem;
+  background-color: #a3a3a3;
+  margin: 2rem;
+  border-radius: 5px;
 }
 
 .game {
   width: 80%;
   padding: 20px;
+  background-color: #a3a3a3;
+  margin: 2rem;
+  border-radius: 5px;
 }
