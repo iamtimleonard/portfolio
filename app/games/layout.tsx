@@ -14,6 +14,9 @@ export default function RootLayout({
           <li>
             <Link href="/games/minesweeper">Minesweeper</Link>
           </li>
+          <li>
+            <Link href="/games/synth">Synth</Link>
+          </li>
         </ul>
       </nav>
       <div className={styles.game}>{children}</div>
