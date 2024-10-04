@@ -164,16 +164,6 @@ function Page() {
             <li>
               <Link href="/games">Games</Link>
             </li>
-            <li>
-              <Link href="https://border-radius.iamtimleonard.vercel.app/">
-                Border Radius Previewer
-              </Link>
-            </li>
-            <li>
-              <Link href="https://quiz-app-iamtimleonard.vercel.app/">
-                Quiz App
-              </Link>
-            </li>
           </ul>
         </article>
       </Card>
