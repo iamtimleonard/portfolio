@@ -1,0 +1,21 @@
+.white {
+  border: 1px solid black;
+}
+
+.black {
+  background-color: black;
+  height: 50%;
+}
+
+.keyboard {
+  display: flex;
+  height: 100%;
+}
+
+.container {
+  height: 10rem;
+}
+
+.pressed {
+  background-color: blue;
+}
