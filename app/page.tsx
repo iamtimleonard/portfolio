@@ -16,11 +16,14 @@ import Link from "next/link";
 import Image from "next/image";
 import encompassLogo from "../public/logo-encompass.gif";
 import epoxyLogo from "../public/epoxy.jpeg";
+import { Fade } from "react-awesome-reveal";
 
 function Card({ styleReference, children }) {
   return (
     <IconContext.Provider value={{ className: styles.reactIcons }}>
-      <div className={`${styles.card} ${styleReference}`}>{children}</div>
+      <Fade>
+        <div className={`${styles.card} ${styleReference}`}>{children}</div>
+      </Fade>
     </IconContext.Provider>
   );
 }
