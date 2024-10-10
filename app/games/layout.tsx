@@ -14,6 +14,12 @@ export default function RootLayout({
           <li>
             <Link href="/games/minesweeper">Minesweeper</Link>
           </li>
+          <li>
+            <Link href="/games/border-radius">Border Radius App</Link>
+          </li>
+          <li>
+            <Link href="/games/quiz-game">Quiz Game</Link>
+          </li>
         </ul>
       </nav>
       <div className={styles.game}>{children}</div>
