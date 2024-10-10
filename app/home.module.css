@@ -14,11 +14,22 @@
   overflow: auto;
 }
 
+.mainContainer {
+  background-color: #4d4d4f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350rem;
+  justify-content: space-between;
+  padding: 5rem;
+}
+
 .card {
   border-radius: 1rem;
   padding: 1rem;
   background-color: tan;
   box-shadow: 2px 1px 1px black;
+  width: 35rem;
 }
 
 .card ul {

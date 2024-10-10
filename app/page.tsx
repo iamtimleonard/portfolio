@@ -16,22 +16,41 @@ import Link from "next/link";
 import Image from "next/image";
 import encompassLogo from "../public/logo-encompass.gif";
 import epoxyLogo from "../public/epoxy.jpeg";
+import { Fade } from "react-awesome-reveal";
+import TypeIt from "typeit-react";
 
 function Card({ styleReference, children }) {
   return (
     <IconContext.Provider value={{ className: styles.reactIcons }}>
-      <div className={`${styles.card} ${styleReference}`}>{children}</div>
+      <Fade>
+        <div className={`${styles.card} ${styleReference}`}>{children}</div>
+      </Fade>
     </IconContext.Provider>
   );
 }
 
 function Page() {
   return (
-    <main className={styles.gridContainer}>
+    <main className={styles.mainContainer}>
       <Card styleReference={styles.nameCard}>
         <article>
-          <h1>Hello, I am Tim Leonard 🚀</h1>
-          <p>This portfolio is under construction</p>
+          <TypeIt
+            as={"h1"}
+            options={{
+              cursor: false,
+            }}
+          >
+            Hello, I am Tim Leonard 🚀
+          </TypeIt>
+          <TypeIt
+            as={"p"}
+            options={{
+              startDelay: 3500,
+              cursor: false,
+            }}
+          >
+            This portfolio is under construction
+          </TypeIt>
         </article>
         <footer>
           <a href="https://github.com/iamtimleonard">
@@ -75,33 +94,36 @@ function Page() {
       <Card styleReference={styles.bioCard}>
         <article>
           <p>
-            I am a web developer with more than three years of professional
-            experience, specializing in building dynamic, scalable web
-            applications.
+            I am a full stack developer with a passion for the future of the
+            web. Currently, I work at Epoxy.ai, where I collaborate with a team
+            of experienced engineers to create personalization tools in the
+            sports betting space. While there, I gained experience designing
+            building scalable web applications with AWS. I have been enjoying
+            getting my hands dirty with cloud native architecture.
+          </p>{" "}
+          <p>
+            Previously, I worked at 21PSTEM, a non-profit specializing in
+            education technology for STEM classrooms. There, I worked directly
+            with educators and researches to build applications for use in math
+            classes. That work tied in well with my own history as an educator
+            and public school teacher.
           </p>
           <p>
-            I first started working at 21PSTEM, an education-focused non-profit
-            in the Philadelphia area, where I coordinated with math educators to
-            develop technologies to foster student colaboration in the learning
-            process. Currently, I am part of the team at epoxy.ai, where I help
-            develop cutting-edge technology in the sports betting space.
+            I began my journey as a self-taught web developer. To hone my
+            skills, I took part in projects with chingu.io, where I was grouped
+            with other web developers across the world to build projects
+            together.
           </p>
           <p>
-            With a passion for problem-solving and a focus on delivering
-            efficient, user-friendly applications, I thrive in dynamic
-            environments that encourage growth and learning.
+            In an earlier life, I was a public school teacher in Warren
+            Township, NJ, where I taught instrumental music, and a freelance
+            cellist in New York City.
           </p>
-          <figure>
-            <figcaption>I have other interests like:</figcaption>
-            <ul>
-              <li>mycology</li>
-              <li>rock climbing</li>
-              <li>shape note singing</li>
-              <li>sewing</li>
-              <li>fermentation</li>
-              <li>food</li>
-            </ul>
-          </figure>
+          <p>Skills: TypeScript, AWS, React, Redis, MongoDB, SQL, Ember.js</p>
+          <p>
+            I am also an avid rock climber, shape note singer, mycologist, and
+            Seinfeld fan.
+          </p>
         </article>
       </Card>
       <Card styleReference={styles.pstem}>
@@ -153,18 +175,6 @@ function Page() {
             During my time at Epoxy, I have grown familiar with using AWS to
             architect serverless applications.
           </p>
-        </article>
-      </Card>
-      <Card styleReference={styles.miscCard}>
-        <header>
-          <h3>Other Projects</h3>
-        </header>
-        <article>
-          <ul>
-            <li>
-              <Link href="/games">Games</Link>
-            </li>
-          </ul>
         </article>
       </Card>
     </main>
