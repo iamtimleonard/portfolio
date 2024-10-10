@@ -17,6 +17,7 @@ import Image from "next/image";
 import encompassLogo from "../public/logo-encompass.gif";
 import epoxyLogo from "../public/epoxy.jpeg";
 import { Fade } from "react-awesome-reveal";
+import TypeIt from "typeit-react";
 
 function Card({ styleReference, children }) {
   return (
@@ -33,8 +34,23 @@ function Page() {
     <main className={styles.mainContainer}>
       <Card styleReference={styles.nameCard}>
         <article>
-          <h1>Hello, I am Tim Leonard 🚀</h1>
-          <p>This portfolio is under construction</p>
+          <TypeIt
+            as={"h1"}
+            options={{
+              cursor: false,
+            }}
+          >
+            Hello, I am Tim Leonard 🚀
+          </TypeIt>
+          <TypeIt
+            as={"p"}
+            options={{
+              startDelay: 3500,
+              cursor: false,
+            }}
+          >
+            This portfolio is under construction
+          </TypeIt>
         </article>
         <footer>
           <a href="https://github.com/iamtimleonard">
