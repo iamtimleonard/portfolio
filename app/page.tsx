@@ -31,6 +31,7 @@ function Card({ styleReference, children }) {
 
 function Page() {
   return (
+    <div className={styles.background}>
     <main className={styles.mainContainer}>
       <Card styleReference={styles.nameCard}>
         <article>
@@ -178,6 +179,7 @@ function Page() {
         </article>
       </Card>
     </main>
+    </div>
   );
 }
 
