@@ -91,7 +91,7 @@
   margin: 2rem;
 }
 
-@media only screen and (max-width: 1288px) {
+@media only screen and (max-width: 560px) {
   .gridContainer {
     grid-template-areas:
       "name name name"
@@ -102,5 +102,13 @@
 
   .nameCard {
     text-align: center;
+  }
+
+  .mainContainer {
+    padding: 5rem .5rem;
+  }
+
+  .card {
+    width: 100%;
   }
 }

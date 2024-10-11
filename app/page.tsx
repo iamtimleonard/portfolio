@@ -94,13 +94,13 @@ function Page() {
       <Card styleReference={styles.bioCard}>
         <article>
           <p>
-            I am a full stack developer with a passion for the future of the
+            I am a full stack developer with passion for learning new technologies and excited for the future of the
             web. Currently, I work at Epoxy.ai, where I collaborate with a team
             of experienced engineers to create personalization tools in the
             sports betting space. While there, I gained experience designing
             building scalable web applications with AWS. I have been enjoying
             getting my hands dirty with cloud native architecture.
-          </p>{" "}
+          </p>
           <p>
             Previously, I worked at 21PSTEM, a non-profit specializing in
             education technology for STEM classrooms. There, I worked directly
