@@ -19,9 +19,21 @@ import epoxyLogo from "../public/epoxy.jpeg";
 import { Fade } from "react-awesome-reveal";
 import TypeIt from "typeit-react";
 
-function Card({ styleReference, children }) {
+function Card({ styleReference, heading, children }) {
   return (
     <div className={styles.experiment}>
+      {heading && (
+        <div className={styles.headingThing}>
+          <TypeIt
+            as="h1"
+            options={{
+              waitUntilVisible: true,
+            }}
+          >
+            {heading}
+          </TypeIt>
+        </div>
+      )}
       <div className={styles.cardContainer}>
         <IconContext.Provider value={{ className: styles.reactIcons }}>
           <Fade>
@@ -37,7 +49,7 @@ function Page() {
   return (
     <div className={styles.background}>
       <main className={styles.mainContainer}>
-        <Card styleReference={styles.nameCard}>
+        <Card styleReference={styles.nameCard} heading={""}>
           <article>
             <TypeIt
               as={"h1"}
@@ -66,7 +78,7 @@ function Page() {
             </a>
           </footer>
         </Card>
-        <Card styleReference={styles.skillCard}>
+        <Card styleReference={styles.skillCard} heading={"things i use"}>
           <article>
             <ul>
               <li>
@@ -96,7 +108,7 @@ function Page() {
             </ul>
           </article>
         </Card>
-        <Card styleReference={styles.bioCard}>
+        <Card styleReference={styles.bioCard} heading={"about me"}>
           <article>
             <p>
               I am a full stack developer with passion for learning new
@@ -132,7 +144,7 @@ function Page() {
             </p>
           </article>
         </Card>
-        <Card styleReference={styles.pstem}>
+        <Card styleReference={styles.pstem} heading={"21pstem employment"}>
           <header>
             <Image src={encompassLogo} alt="logo" />
           </header>
@@ -168,7 +180,7 @@ function Page() {
             <p>I learned a ton during my time at 21PSTEM.</p>
           </article>
         </Card>
-        <Card styleReference={styles.epoxy}>
+        <Card styleReference={styles.epoxy} heading={"epoxy.ai employment"}>
           <header>
             <Image src={epoxyLogo} alt="epoxy.ai logo" width={100} />
           </header>
