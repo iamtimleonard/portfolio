@@ -22,19 +22,19 @@ import TypeIt from "typeit-react";
 function Card({ styleReference, heading, children }) {
   return (
     <div className={styles.experiment}>
-      {heading && (
-        <div className={styles.headingThing}>
-          <TypeIt
-            as="h1"
-            options={{
-              waitUntilVisible: true,
-            }}
-          >
-            {heading}
-          </TypeIt>
-        </div>
-      )}
       <div className={styles.cardContainer}>
+        {heading && (
+          <div className={styles.headingThing}>
+            <TypeIt
+              as="h1"
+              options={{
+                waitUntilVisible: true,
+              }}
+            >
+              {heading}
+            </TypeIt>
+          </div>
+        )}
         <IconContext.Provider value={{ className: styles.reactIcons }}>
           <Fade>
             <div className={`${styles.card} ${styleReference}`}>{children}</div>
@@ -48,6 +48,20 @@ function Card({ styleReference, heading, children }) {
 function Page() {
   return (
     <div className={styles.background}>
+      <nav className={styles.nav}>
+        <Link className={styles.navLink} href="#things-i-use">
+          things i use
+        </Link>
+        <Link className={styles.navLink} href="#about-me">
+          about me
+        </Link>
+        <Link className={styles.navLink} href="#21pstem">
+          21pstem
+        </Link>
+        <Link className={styles.navLink} href="#epoxyai">
+          epoxyai
+        </Link>
+      </nav>
       <main className={styles.mainContainer}>
         <Card styleReference={styles.nameCard} heading={""}>
           <article>
@@ -58,15 +72,6 @@ function Page() {
               }}
             >
               Hello, I am Tim Leonard 🚀
-            </TypeIt>
-            <TypeIt
-              as={"p"}
-              options={{
-                startDelay: 3500,
-                cursor: false,
-              }}
-            >
-              This portfolio is under construction
             </TypeIt>
           </article>
           <footer>
@@ -79,7 +84,7 @@ function Page() {
           </footer>
         </Card>
         <Card styleReference={styles.skillCard} heading={"things i use"}>
-          <article>
+          <article id="things-i-use">
             <ul>
               <li>
                 <FaNodeJs title="Node.js" />
@@ -109,7 +114,7 @@ function Page() {
           </article>
         </Card>
         <Card styleReference={styles.bioCard} heading={"about me"}>
-          <article>
+          <article id="about-me">
             <p>
               I am a full stack developer with passion for learning new
               technologies and excited for the future of the web. Currently, I
@@ -148,7 +153,7 @@ function Page() {
           <header>
             <Image src={encompassLogo} alt="logo" />
           </header>
-          <article>
+          <article id="21pstem">
             <p>
               At{" "}
               <Link href="https://www.21pstem.org/" target="">
@@ -184,7 +189,7 @@ function Page() {
           <header>
             <Image src={epoxyLogo} alt="epoxy.ai logo" width={100} />
           </header>
-          <article>
+          <article id="epoxyai">
             <p>
               I am currently a full stack developer at{" "}
               <Link href="https://epoxy.ai" target="">
