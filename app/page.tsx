@@ -19,22 +19,10 @@ import epoxyLogo from "../public/epoxy.jpeg";
 import { Fade } from "react-awesome-reveal";
 import TypeIt from "typeit-react";
 
-function Card({ styleReference, heading, children }) {
+function Card({ styleReference, children }) {
   return (
     <div className={styles.experiment}>
       <div className={styles.cardContainer}>
-        {heading && (
-          <div className={styles.headingThing}>
-            <TypeIt
-              as="h1"
-              options={{
-                waitUntilVisible: true,
-              }}
-            >
-              {heading}
-            </TypeIt>
-          </div>
-        )}
         <IconContext.Provider value={{ className: styles.reactIcons }}>
           <Fade>
             <div className={`${styles.card} ${styleReference}`}>{children}</div>
@@ -48,22 +36,8 @@ function Card({ styleReference, heading, children }) {
 function Page() {
   return (
     <div className={styles.background}>
-      <nav className={styles.nav}>
-        <Link className={styles.navLink} href="#things-i-use">
-          things i use
-        </Link>
-        <Link className={styles.navLink} href="#about-me">
-          about me
-        </Link>
-        <Link className={styles.navLink} href="#21pstem">
-          21pstem
-        </Link>
-        <Link className={styles.navLink} href="#epoxyai">
-          epoxyai
-        </Link>
-      </nav>
       <main className={styles.mainContainer}>
-        <Card styleReference={styles.nameCard} heading={""}>
+        <Card styleReference={styles.nameCard}>
           <article>
             <TypeIt
               as={"h1"}
@@ -83,122 +57,71 @@ function Page() {
             </a>
           </footer>
         </Card>
-        <Card styleReference={styles.skillCard} heading={"things i use"}>
-          <article id="things-i-use">
-            <ul>
-              <li>
-                <FaNodeJs title="Node.js" />
-              </li>
-              <li>
-                <FaAws title="AWS" />
-              </li>
-              <li>
-                <DiMongodb title="MongoDB" />
-              </li>
-              <li>
-                <SiRedis title="Redis" />
-              </li>
-              <li>
-                <FaReact title="React" />
-              </li>
-              <li>
-                <FaEmber title="Ember" />
-              </li>
-              <li>
-                <SiSvelte title="Svelte" />
-              </li>
-              <li>
-                <SiGit title="Git" />
-              </li>
-            </ul>
-          </article>
-        </Card>
-        <Card styleReference={styles.bioCard} heading={"about me"}>
+        <Card styleReference={styles.bioCard}>
           <article id="about-me">
             <p>
-              I am a full stack developer with passion for learning new
-              technologies and excited for the future of the web. Currently, I
-              work at Epoxy.ai, where I collaborate with a team of experienced
+              I began making websites for fun with friends in elementary school,
+              when table-based layouts were all the rage. Somewhere in the
+              depths of the internet there is an archive of the geocities site I
+              made to review video games. Currently, I am a full stack engineer
+              at Epoxy.ai, where I collaborate with a team of experienced
               engineers to create personalization tools in the sports betting
-              space. While there, I gained experience designing building
+              space. While there, I gained experience designing and building
               scalable web applications with AWS. I have been enjoying getting
-              my hands dirty with cloud native architecture.
-            </p>
-            <p>
-              Previously, I worked at 21PSTEM, a non-profit specializing in
-              education technology for STEM classrooms. There, I worked directly
-              with educators and researches to build applications for use in
-              math classes. That work tied in well with my own history as an
-              educator and public school teacher.
+              my hands dirty with cloud native architecture. Previously, I
+              worked at 21PSTEM, a non-profit specializing in education
+              technology for STEM classrooms. There, I worked directly with
+              educators and researches to build applications for use in math
+              classes. That work tied in well with my own history as an educator
+              and public school teacher.
             </p>
             <p>
               I began my journey as a self-taught web developer. To hone my
               skills, I took part in projects with chingu.io, where I was
               grouped with other web developers across the world to build
-              projects together.
+              projects together. I got to work on some interesting projects with
+              equally interesting people - a standout was a mushroom locator
+              app. It taught me a lot about software design and working as a
+              team of developers.
             </p>
             <p>
-              In an earlier life, I was a public school teacher in Warren
-              Township, NJ, where I taught instrumental music, and a freelance
-              cellist in New York City.
+              In an earlier life, I was a professional cellist, freelancing in
+              New York City, and a public school music teacher in Warren
+              Township, NJ, where I taught instrumental music.
             </p>
-            <p>Skills: TypeScript, AWS, React, Redis, MongoDB, SQL, Ember.js</p>
             <p>
               I am also an avid rock climber, shape note singer, mycologist, and
               Seinfeld fan.
             </p>
-          </article>
-        </Card>
-        <Card styleReference={styles.pstem} heading={"21pstem employment"}>
-          <header>
-            <Image src={encompassLogo} alt="logo" />
-          </header>
-          <article id="21pstem">
-            <p>
-              At{" "}
-              <Link href="https://www.21pstem.org/" target="">
-                21PSTEM
-              </Link>
-              , I worked on a project called EnCOMPASS, which fell under the
-              purview of{" "}
-              <Link href="https://mathematicalthinking.org/">
-                Mathematical Thinking
-              </Link>
-              . The purpose of the project is to encourage student collaboration
-              in the learning process. When using the app, students are able to
-              view one anothers' math work and leave comments for each other.
-            </p>
-            <p>
-              As the sole developer on this legacy project, it was my
-              responsibility to define features, architect solutions, and to
-              assign priority to stakeholder requests. My main efforts there
-              were:
-            </p>
-            <ul>
-              <li>
-                update the legacy codebase to modern JavaScript, including
-                migrating to Ember 3
-              </li>
-              <li>improve the main dashboard UI</li>
-              <li>develop a set of data visualizations for instructors</li>
-            </ul>
-            <p>I learned a ton during my time at 21PSTEM.</p>
-          </article>
-        </Card>
-        <Card styleReference={styles.epoxy} heading={"epoxy.ai employment"}>
-          <header>
-            <Image src={epoxyLogo} alt="epoxy.ai logo" width={100} />
-          </header>
-          <article id="epoxyai">
-            <p>
-              I am currently a full stack developer at{" "}
-              <Link href="https://epoxy.ai" target="">
-                Epoxy.ai
-              </Link>
-              , where I work on a suite of tools for the sports betting
-              industry. During my time at Epoxy, I have grown familiar with
-              using AWS to architect serverless applications.
-            </p>
+            <figure>
+              <figcaption>Things I use: </figcaption>
+              <ul>
+                <li>
+                  <FaNodeJs title="Node.js" />
+                </li>
+                <li>
+                  <FaAws title="AWS" />
+                </li>
+                <li>
+                  <DiMongodb title="MongoDB" />
+                </li>
+                <li>
+                  <SiRedis title="Redis" />
+                </li>
+                <li>
+                  <FaReact title="React" />
+                </li>
+                <li>
+                  <FaEmber title="Ember" />
+                </li>
+                <li>
+                  <SiSvelte title="Svelte" />
+                </li>
+                <li>
+                  <SiGit title="Git" />
+                </li>
+              </ul>
+            </figure>
           </article>
         </Card>
       </main>
