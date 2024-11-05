@@ -1,117 +1,110 @@
-.background {
-  background: repeating-radial-gradient(circle, #000e02e9, transparent 20%);
-  background-size: 2em 2em;
-  overflow: scroll;
-  background-color: #0a4810;
-  opacity: 1;
-  height: 100%;
+.body {
+  background-color: var(--khaki);
 }
 
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  padding: 5rem;
-}
-
-.cardContainer {
-  margin: 2rem;
-}
-
-.card {
-  border-radius: 1rem;
-  padding: 1rem;
-  background: linear-gradient(145deg, aliceblue, tan);
-  box-shadow: 2px 1px 1px black;
-  & p {
-    margin: 0.5rem 0;
-  }
-}
-
-.card ul {
-  padding-left: 1rem;
-}
-
-.nameCard {
-  grid-area: name;
-  display: flex;
-  flex-direction: column;
-}
-
-.card header {
-  text-align: center;
-  margin: 1rem;
-}
-
-.card article {
-  flex: 1;
-  margin: 1rem;
-}
-
-.card footer {
-  text-align: center;
-}
-
-.skillCard {
-  grid-area: skill;
-}
-
-.bioCard ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  text-align: center;
-  padding: 0;
-}
-
-.bioCard {
-  grid-area: bio;
-}
-
-.miscCard {
-  grid-area: misc;
-}
-
-.epoxy {
-  grid-area: epoxy;
-}
-
-.pstem {
-  grid-area: pstem;
-}
-
-.reactIcons {
-  color: black;
-  font-size: 2.5rem;
-  margin: 2rem;
-}
-
-@media screen and (max-width: 960px) {
-  .nav {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 560px) {
-  .gridContainer {
-    grid-template-areas:
-      "name name name"
-      "bio bio bio"
-      "misc misc epoxy"
-      "pstem pstem skill";
-  }
-
-  .nameCard {
+/* Nav */
+.navContainer {
+  position: relative;
+  .navBar {
+    background-color: var(--english-violet);
+    padding: 1.5rem;
     text-align: center;
+    .nav {
+      .navList {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        .navListItem {
+          .navLink {
+            color: var(--redwood);
+            font-size: 1.25rem;
+            font-family: Helvetica, Arial, sans-serif;
+          }
+        }
+      }
+    }
   }
-
-  .mainContainer {
-    padding: 5rem 0.5rem;
-  }
-
-  .card {
+  &::after {
+    position: absolute;
+    content: "";
     width: 100%;
+    height: 100%;
+    background-color: var(--english-violet);
+    transform-origin: bottom right;
+    z-index: -1;
+    transform: skewY(1.5deg);
+  }
+}
+
+/* Content */
+
+.container {
+  margin: 10rem 0;
+}
+
+.asymmetric {
+  width: 100%;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: var(--english-violet);
+    transform-origin: top left;
+    z-index: -1;
+    transform: skewY(-1.5deg);
+  }
+}
+
+.mainContent {
+  margin: 10rem 0;
+  text-align: center;
+  background-color: var(--english-violet);
+  padding: 1.5rem 0;
+}
+
+@keyframes pulse {
+  0% {
+    color: var(--ivory);
+    text-shadow: 0 0 3px var(--ivory), 0 0 8px var(--ivory),
+      0 0 15px var(--ivory), 0 0 42px var(--redwood), 0 0 82px var(--redwood),
+      0 0 92px var(--redwood), 0 0 102px var(--redwood),
+      0 0 130px var(--redwood);
+  }
+  100% {
+    color: var(--ivory);
+    text-shadow: 0 0 1px var(--ivory), 0 0 3px var(--ivory),
+      0 0 7px var(--ivory), 0 0 18px var(--redwood), 0 0 36px var(--redwood),
+      0 0 40px var(--redwood), 0 0 55px var(--redwood), 0 0 70px var(--redwood);
+  }
+}
+
+.neon {
+  font-family: "Snell Roundhand";
+  font-size: 8rem;
+  color: var(--ivory);
+  text-shadow: 0 0 3px var(--ivory), 0 0 8px var(--ivory), 0 0 15px var(--ivory),
+    0 0 42px var(--redwood), 0 0 82px var(--redwood), 0 0 92px var(--redwood),
+    0 0 102px var(--redwood), 0 0 130px var(--redwood);
+  animation: pulse 1s 10 alternate;
+}
+
+.info {
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--ivory);
+  font-size: 1.1rem;
+  margin: 2rem 0;
+  .outsideLink {
+    color: var(--redwood);
+  }
+}
+
+@media (min-width: 1177px) {
+  .navContainer {
+    .navBar {
+      .nav {
+        padding: 0 25rem;
+      }
+    }
   }
 }
