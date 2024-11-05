@@ -42,7 +42,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={styles.body}>
         <NavBar></NavBar>
-        <div className={styles.container}>{children}</div>
+        <div className={styles.container}>
+          {" "}
+          <div className={styles.asymmetric}>
+            <main className={styles.mainContent}>{children}</main>
+          </div>
+        </div>
       </body>
     </html>
   );

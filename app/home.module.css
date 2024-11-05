@@ -80,8 +80,7 @@
 }
 
 .neon {
-  font-family: "Snell Roundhand";
-  font-size: 8rem;
+  font-size: 4rem;
   color: var(--ivory);
   text-shadow: 0 0 3px var(--ivory), 0 0 8px var(--ivory), 0 0 15px var(--ivory),
     0 0 42px var(--redwood), 0 0 82px var(--redwood), 0 0 92px var(--redwood),
