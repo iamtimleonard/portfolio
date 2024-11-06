@@ -295,3 +295,16 @@ progress {
 [aria-disabled="true"] {
   cursor: default;
 }
+
+.react-icons {
+  color: var(--redwood);
+  font-size: 2rem;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform: perspective(1rem);
+  &:hover,
+  &:active {
+    color: var(--ivory);
+    transform: translateZ(1rem);
+  }
+}
