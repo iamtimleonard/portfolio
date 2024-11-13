@@ -17,7 +17,6 @@ export default function RootLayout({
       <body className={styles.body}>
         <NavBar />
         <div className={styles.container}>
-          {" "}
           <div className={styles.asymmetric}>
             <main className={styles.mainContent}>{children}</main>
           </div>
