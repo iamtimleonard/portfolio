@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={styles.body}>
-        <NavBar />
+        {/* <NavBar /> */}
         <div className={styles.container}>
           <div className={styles.asymmetric}>
             <main className={styles.mainContent}>{children}</main>
