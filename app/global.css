@@ -1,3 +1,11 @@
+:root {
+  --dark-purple: #291e32ff;
+  --penn-blue: #04174bff;
+  --ivory: #fffff3ff;
+  --english-violet: #3b364eff;
+  --redwood: #ffc2c2;
+  --khaki: #b5a99dff;
+}
 /* https://github.com/filipelinhares/ress */
 
 /* # =================================================================
@@ -35,6 +43,7 @@ body {
 * {
   padding: 0; /* Reset `padding` and `margin` of all elements */
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 /* # =================================================================
@@ -285,4 +294,17 @@ progress {
 /* Specify the unstyled cursor of disabled, not-editable, or otherwise inoperable elements */
 [aria-disabled="true"] {
   cursor: default;
+}
+
+.react-icons {
+  color: var(--redwood);
+  font-size: 2rem;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform: perspective(1rem);
+  &:hover,
+  &:active {
+    color: var(--ivory);
+    transform: translateZ(1rem);
+  }
 }
