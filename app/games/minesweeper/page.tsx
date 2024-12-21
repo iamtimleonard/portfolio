@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./minesweeper.module.css";
 import { basicConfig } from "./config";
 import { buildLayout } from "./utils";
-
-let timer: NodeJS.Timeout;
 
 const colors = {
   0: "#000000",
@@ -111,6 +109,7 @@ function StatusBar({ gameState, initializeGame }) {
 
 function Page() {
   const [config, setConfig] = useState(basicConfig.beginner);
+  const timer = useRef(null)
 
   const game = {
     layout: [],
@@ -154,9 +153,9 @@ function Page() {
           return total;
         }, 0) === 0;
 
-      if ((lost || won) && timer) {
-        clearInterval(timer);
-        timer = null;
+      if ((lost || won) && timer.current) {
+        clearInterval(timer.current);
+        timer.current = null;
       }
       if (lost) {
         return { ...currentState, layout: newLayout, status: "lost" };
@@ -164,7 +163,7 @@ function Page() {
       if (won) {
         return { ...currentState, layout: newLayout, status: "won" };
       }
-      if (!timer) timer = setInterval(updateTime, 1000);
+      if (!timer.current) timer.current = setInterval(updateTime, 1000);
       return { ...currentState, layout: newLayout, status: "inProgress" };
     });
   };
@@ -187,9 +186,9 @@ function Page() {
 
   const initializeGame = () => {
     setGameState((state) => {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
+      if (timer.current) {
+        clearInterval(timer.current);
+        timer.current = null;
       }
       return {
         ...state,
@@ -204,8 +203,8 @@ function Page() {
     setConfig(basicConfig[difficulty]);
     setGameState((state) => {
       if (timer) {
-        clearInterval(timer);
-        timer = null;
+        clearInterval(timer.current);
+        timer.current = null;
       }
       return {
         ...state,

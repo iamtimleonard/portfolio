@@ -1,19 +1,47 @@
-.white {
+.control {
   border: 1px solid black;
-}
-
-.black {
-  background-color: black;
-  height: 50%;
-}
-
-.keyboard {
-  display: flex;
-  height: 100%;
+  padding: 1rem;
+  .start {
+    border: 1px solid black;
+  }
+  .wave {
+    border: 1px solid black;
+  }
 }
 
 .container {
   height: 10rem;
+}
+
+.module {
+  border: 1px solid black;
+  display: flex;
+}
+
+.white {
+  border: 1px solid black;
+  background-color: white;
+  flex-grow: 1;
+}
+
+.black {
+  background-color: black;
+  color: white;
+  height: 50%;
+  flex-grow: 1;
+}
+
+.keyboard {
+  display: flex;
+  height: 8rem;
+  flex-grow: 1;
+}
+
+.controls {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pressed {
