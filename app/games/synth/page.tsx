@@ -62,6 +62,14 @@ const Page = () => {
             <div
               className={`${styles[type]} ${pressed === key && styles.pressed}`}
               key={frequency}
+              onMouseDown={() => {
+                  oscillator.current.frequency.value = frequency;
+                  gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
+                return;
+              }}
+              onMouseUp={() => {
+                gainNode.current.gain.linearRampToValueAtTime(0, audioContext.current.currentTime + 0.75); 
+              }}
             >
               {note}
             </div>
