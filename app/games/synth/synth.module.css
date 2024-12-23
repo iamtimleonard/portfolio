@@ -1,9 +1,23 @@
+.startModal {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: white;
+  opacity: 50%;
+  .start {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    opacity: 100%;
+    margin: auto;
+  }
+}
+
 .control {
   border: 1px solid black;
   padding: 1rem;
-  .start {
-    border: 1px solid black;
-  }
   .wave {
     border: 1px solid black;
   }

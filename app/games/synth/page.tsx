@@ -27,25 +27,26 @@ const Page = () => {
       gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
     }
     return;
-  }, [gain]);
+  }, [gain, attack]);
 
   const handleKeyup = useCallback((e: KeyboardEvent) => {
-    gainNode.current.gain.linearRampToValueAtTime(0, audioContext.current.currentTime + 0.75); 
-  }, [gain])
+    setTimeout(() => gainNode.current.gain.linearRampToValueAtTime(0, audioContext.current.currentTime + 0.75), 2000); 
+  }, [gain, attack])
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
-    document.addEventListener("keyup", handleKeyup)
+    document.addEventListener("keyup", handleKeyup);
     return () => { 
       document.removeEventListener("keydown", handleKeydown)
       document.removeEventListener("keyup", handleKeyup)
      }
-  }, [gain]);
+  }, [gain, attack]);
 
   return (
     <div className={styles.container}>
       <div className={styles.control}>
       {!started && (
+        <div className={styles.startModal}>
         <button className={styles.start}
           onClick={() => {
             oscillator.current.start();
@@ -54,6 +55,7 @@ const Page = () => {
         >
           start
         </button>
+        </div>
       )}
       </div>
       <div className={styles.module}>
@@ -79,6 +81,7 @@ const Page = () => {
           <select
             name="wave"
             className={styles.wave}
+            value={synthType}
             onChange={(e) => {
               oscillator.current.type = e.target.value as OscillatorType;
               setSynthType(e.target.value as OscillatorType);
