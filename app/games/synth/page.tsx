@@ -1,16 +1,17 @@
 "use client";
 
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import frequencies from "./frequencies";
 import styles from "./synth.module.css";
 
-export default function Page() {
+const Page = () => {
   const [synthType, setSynthType] = useState<OscillatorType>("sine");
   const [started, setStarted] = useState<boolean>(false);
   const [pressed, setPressed] = useState<string>("");
   const [gain, setGain] = useState<number>(0.75)
+  const [attack, setAttack] = useState<number>(500)
 
-  const timeout = useRef(null)
   const audioContext = useRef(new AudioContext())
   const oscillator = useRef(new OscillatorNode(audioContext.current));
   const gainNode = useRef(new GainNode(audioContext.current, {
@@ -20,24 +21,25 @@ export default function Page() {
   oscillator.current.connect(gainNode.current);
   gainNode.current.connect(audioContext.current.destination);
 
-  const handleKeyboardInput = useCallback((e: KeyboardEvent) => {
-    console.log(gain)
+  const handleKeydown = useCallback((e: KeyboardEvent) => {
     if (frequencies[e.key]) {
-      if (timeout.current) clearTimeout(timeout.current);
       oscillator.current.frequency.value = frequencies[e.key].frequency;
-      gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + .5);
-      timeout.current = setTimeout(() => {
-        gainNode.current.gain.linearRampToValueAtTime(0, 0.75);
-      }, 500);
-      setPressed(e.key);
-      setTimeout(() => setPressed(""), 1000);
+      gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
     }
     return;
   }, [gain]);
 
+  const handleKeyup = useCallback((e: KeyboardEvent) => {
+    gainNode.current.gain.linearRampToValueAtTime(0, audioContext.current.currentTime + 0.75); 
+  }, [gain])
+
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyboardInput);
-    return () => document.removeEventListener("keydown", handleKeyboardInput)
+    document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keyup", handleKeyup)
+    return () => { 
+      document.removeEventListener("keydown", handleKeydown)
+      document.removeEventListener("keyup", handleKeyup)
+     }
   }, [gain]);
 
   return (
@@ -85,10 +87,14 @@ export default function Page() {
             <span>{gain * 100}%</span>
           </div><div>
             <label htmlFor="attack">Attack</label>
-            <input type="range" name="ramp" min={0} max={2000} />
+            <input type="range" name="ramp" min={0} max={2000} value={attack} onChange={(e) => setAttack(+e.target.value)} />
+            <span>{attack}ms</span>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+// this uses browser only APIs so it will error on prerender if ssr is not disabled
+export default dynamic(() => Promise.resolve(Page), { ssr: false })
