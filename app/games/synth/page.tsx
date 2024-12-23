@@ -12,14 +12,21 @@ const Page = () => {
   const [gain, setGain] = useState<number>(0.75)
   const [attack, setAttack] = useState<number>(500)
 
-  const audioContext = useRef(new AudioContext())
-  const oscillator = useRef(new OscillatorNode(audioContext.current));
-  const gainNode = useRef(new GainNode(audioContext.current, {
-    gain: 0,
-  }));
+  const audioContext = useRef(null)
+  const oscillator = useRef(null);
+  const gainNode = useRef(null);
 
-  oscillator.current.connect(gainNode.current);
-  gainNode.current.connect(audioContext.current.destination);
+  useEffect(() => {
+    if (!audioContext.current) {
+      audioContext.current = new AudioContext()
+      oscillator.current = new OscillatorNode(audioContext.current)
+      gainNode.current = new GainNode(audioContext.current, {
+        gain: 0
+      })
+      oscillator.current.connect(gainNode.current);
+      gainNode.current.connect(audioContext.current.destination);
+    }
+  }, [])
 
   const handleKeydown = useCallback((e: KeyboardEvent) => {
     if (frequencies[e.key]) {
