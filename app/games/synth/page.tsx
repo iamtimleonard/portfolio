@@ -18,7 +18,6 @@ const Page = () => {
   const audioContext = useRef<AudioContext>(null)
   const oscillator = useRef<OscillatorNode>(null);
   const gainNode = useRef<GainNode>(null);
-  const active = useRef<boolean>(false)
 
   useEffect(() => {
     if (!audioContext.current) {
@@ -33,35 +32,35 @@ const Page = () => {
   }, [])
 
   const handleKeydown = useCallback((e: KeyboardEvent) => {
-    if (frequencies[e.key] && !active.current) {
-      active.current = true
+    if (frequencies[e.key] && !pressed) {
       setPressed(e.key)
       oscillator.current.frequency.value = frequencies[e.key].frequency;
       gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
       gainNode.current.gain.setTargetAtTime(sustain, audioContext.current.currentTime + (attack / 1000), (decay / 1000) / 3);
     }
     return;
-  }, [gain, attack, sustain, decay]);
+  }, [gain, attack, sustain, decay, pressed]);
 
   const handleKeyup = useCallback((e: KeyboardEvent) => {
-    gainNode.current.gain.setTargetAtTime(0, audioContext.current.currentTime, (release / 1000) / 3)
-    active.current = false
-    setPressed("")
-  }, [release])
+    if (pressed === e.key) {
+      gainNode.current.gain.setTargetAtTime(0, audioContext.current.currentTime, (release / 1000) / 3)
+      setPressed("")
+    }
+  }, [release, pressed])
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
     return () => { 
       document.removeEventListener("keydown", handleKeydown)
      }
-  }, [gain, attack, sustain, decay]);
+  }, [gain, attack, sustain, decay, pressed]);
 
   useEffect(() => {
     document.addEventListener("keyup", handleKeyup)
     return () => {
       document.removeEventListener("keyup", handleKeyup)
     }
-  }, [release])
+  }, [release, pressed])
 
   return (
     <div className={styles.container}>
@@ -86,17 +85,19 @@ const Page = () => {
               className={`${styles[type]} ${pressed === key && styles.pressed}`}
               key={frequency}
               onMouseDown={() => {
-                active.current = true
-                setPressed(key)
-                oscillator.current.frequency.value = frequency;
-                gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
-                gainNode.current.gain.setTargetAtTime(sustain, audioContext.current.currentTime + (attack / 1000), (decay / 1000) / 3);
+                if (!pressed) {
+                  setPressed(key)
+                  oscillator.current.frequency.value = frequency;
+                  gainNode.current.gain.linearRampToValueAtTime(gain, audioContext.current.currentTime + (attack / 1000));
+                  gainNode.current.gain.setTargetAtTime(sustain, audioContext.current.currentTime + (attack / 1000), (decay / 1000) / 3);
+                }
                 return;
               }}
               onMouseUp={() => {
-                gainNode.current.gain.setTargetAtTime(0, audioContext.current.currentTime, (release / 1000) / 3)
-                active.current = false
-                setPressed("")
+                if (pressed) {
+                  gainNode.current.gain.setTargetAtTime(0, audioContext.current.currentTime, (release / 1000) / 3)
+                  setPressed("")
+                }
               }}
             >
               {note}
