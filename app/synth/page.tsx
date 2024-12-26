@@ -18,6 +18,7 @@ const Page = () => {
   const [sustain, setSustain] = useState<number>(0.5)
   const [release, setRelease] = useState<number>(500)
   const [octaveDown, setOctaveDown] = useState<boolean>(false)
+  const [isRecording, setIsRecording] = useState<boolean>(false)
 
   const audioContext = useRef<AudioContext>(null)
   const buffer = useRef<AudioBuffer>(null)
@@ -119,6 +120,7 @@ const Page = () => {
   const startRecording = () => {
     const context = audioContext.current;
     if (!context) return;
+    setIsRecording(true)
   
     const bufferSize = 16384; // Choose an appropriate buffer size
     const scriptProcessor = context.createScriptProcessor(bufferSize, 2, 2);
@@ -160,6 +162,7 @@ const Page = () => {
   
   const stopRecording = () => {
     if (recorder.current) {
+      setIsRecording(false)
       recorder.current.disconnect();
       recorder.current = null;
   
@@ -300,7 +303,7 @@ const Page = () => {
                 }
               }}
             >
-              {recorder.current ? "Stop Recording" : "Record"}
+              {isRecording ? "Stop Recording" : "Record"}
             </button>
             {buffer.current && <button className={styles.button} onClick={() => {
               playback()
