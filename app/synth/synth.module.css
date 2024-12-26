@@ -24,7 +24,8 @@
 }
 
 .container {
-  height: 10rem;
+  height: 20rem;
+  background-color: brown;
 }
 
 .module {
@@ -35,7 +36,7 @@
 .white {
   border: 1px solid black;
   background-color: white;
-  flex-grow: 1;
+  flex-grow: 2;
   cursor: pointer;
 }
 
@@ -45,6 +46,8 @@
   height: 50%;
   flex-grow: 1;
   cursor: pointer;
+  z-index: 2;
+  display: inline;
 }
 
 .keyboard {
@@ -60,6 +63,21 @@
   align-items: center;
 }
 
+.wave {
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: white;
+  text-align: center;
+}
+
+.button {
+  background-color: white;
+  border: 1px solid black;
+  padding: .5rem;
+  margin: .5rem;
+}
+
 .pressed {
   background-color: blue;
 }
+
