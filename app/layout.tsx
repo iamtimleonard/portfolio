@@ -1,6 +1,7 @@
+import Link from "next/link";
 import "./global.css";
 import styles from "./home.module.css";
-import NavBar from "./NavBar";
+import { MdRssFeed } from 'react-icons/md';
 
 export const metadata = {
   title: "Tim Leonard's Personal Website",
@@ -21,6 +22,10 @@ export default function RootLayout({
             <main className={styles.mainContent}>{children}</main>
           </div>
         </div>
+        <footer className={styles.footer}>
+          <p className={styles.copyright}>Copyright {new Date().getFullYear()}</p>
+          <span className={styles.rssIcon}><Link href="/feed.atom"><MdRssFeed color="#ee802f" size="30px" /></Link></span>
+        </footer>
       </body>
     </html>
   );
