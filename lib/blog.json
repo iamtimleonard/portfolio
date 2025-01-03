@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Hello World",
+    "date": "2025-01-02",
+    "text": "I think this could be big!",
+    "tags": ["blog", "hello", "world"],
+    "id": "1"
+  }
+]

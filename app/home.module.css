@@ -86,3 +86,22 @@
     color: var(--redwood);
   }
 }
+
+.footer {
+  background-color: var(--penn-blue);
+  bottom: 0;
+  color: white;
+  display: flex;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 3rem;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  .copyright {
+    margin: auto 1rem;
+  }
+  .rssIcon {
+    margin: auto 1rem;
+  }
+}
