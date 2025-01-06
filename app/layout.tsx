@@ -2,10 +2,21 @@ import Link from "next/link";
 import "./global.css";
 import styles from "./home.module.css";
 import { MdRssFeed } from 'react-icons/md';
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Tim Leonard's Personal Website",
   description: "iamtimleonard",
+  alternates: {
+    types: {
+      "application/atom+xml": [
+        {
+          url: "feed.atom",
+          title: "Tim Leonard's Blog"
+        }
+      ]
+    }
+  }
 };
 
 export default function RootLayout({
