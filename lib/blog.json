@@ -2,8 +2,15 @@
   {
     "title": "Hello World",
     "date": "2025-01-02",
-    "text": "I think this could be big!",
+    "text": "<p>I think this could be big!</p>",
     "tags": ["blog", "hello", "world"],
     "id": "1"
+  },
+  {
+    "title": "Hex and Base64",
+    "date": "2025-02-03",
+    "text": "<p>I started working my way through the <a href='https://cryptopals.com/'>cryptopals crypto challenges</a> today. The cryptopals challenges are a series of programming challenges related to cryptography, starting from some first principles going up through more sophisticated cryptographic techniques. I'm psyched to learn more about cryptography and I'm using this as a chance to hone my Go skills.</p><p>The first challenge is simply: \"Convert hex to base64\". I never really considered what hex and base64 encoding actually <i>is</i>. Simply put, hex (hexadecimal) encoding is a base 16 (using 0-9 and a-f) representation of binary data. In software engineering, a hexadecimal digit represents 4 bits, which means a byte is represented by two hex digits. On the other hand, Base64 is a way to encode binary data using 64 unique characters, each character representing 6 bits of data. It has traditionally been used for SMTP email attachments. Base64 winds up taking about 33% more space than the binary data</p><p>The Go standard library has makes it relatively straightforward to decode hex and encode into Base64. You can see my solution <a href='https://github.com/iamtimleonard/cryptopals/blob/main/cmd/set_1/challenge_1/main.go'>here</a></p>",
+    "tags": ["blog", "cryptopals", "cryptography", "go"],
+    "id": 2
   }
 ]
