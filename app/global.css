@@ -308,3 +308,7 @@ progress {
     transform: translateZ(1rem);
   }
 }
+
+a {
+  color: var(--redwood)
+}

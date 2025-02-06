@@ -27,6 +27,7 @@ function Page() {
         </Link>
         .
       </p>
+      <p className={styles.info}>Check out my <Link href="/blog" className={styles.outsideLink}>blog</Link>.</p>
     </div>
   );
 }
