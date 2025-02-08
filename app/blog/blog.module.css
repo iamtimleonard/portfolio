@@ -10,5 +10,14 @@
     font-family: Helvetica, Arial, sans-serif;
     padding: 1rem;
     margin: 1rem;
+    .post {
+      margin: 1rem 0;
+      text-align: left;
+      line-height: 1.25rem;
+    }
   }
+}
+
+.post p {
+  margin-top: .75rem;
 }

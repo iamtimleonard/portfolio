@@ -4,14 +4,15 @@ import { redirect } from "next/navigation"
 
 const Page = ({ params }) => {
   const id = params.id
-  const entry = entries.find((entry) => id === entry.id)
+  const entry = entries.find((entry) => id === entry.id.toString())
+
   if (!entry) return redirect('/blog')
   return (
     <div className={styles.blog}>
       <article className={styles.entry}>
         <p className={styles.date}>{new Date(entry.date).toLocaleDateString()}</p>
         <h3 className={styles.title}>{entry.title}</h3>
-        <p className={styles.text}>{entry.text}</p>
+        <div className={styles.post} dangerouslySetInnerHTML={{__html: entry.text}} /> 
       </article>
     </div>
   )
