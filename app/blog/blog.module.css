@@ -21,3 +21,9 @@
 .post p {
   margin-top: .75rem;
 }
+
+@media screen and (max-width: 1250px) {
+  .blog {
+    width: 80%;
+  }
+}
