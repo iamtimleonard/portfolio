@@ -19,5 +19,12 @@
     "text": "<p>The second cryptopals challenge asks: 'Write a function that takes two equal-length buffers and produces their XOR combination.' This is relatively straightforward in Go.</p><p>An XOR (exclusive or) cipher gets applied bit-wise to plaintext. In Go, this comparison is simply <code>a ^ b</code>.</p><p>You can see my solution <a href='https://github.com/iamtimleonard/cryptopals/blob/main/cmd/set_1/challenge_2/main.go'>here</a></p>",
     "tags": ["blog", "cryptopals", "cryptography", "go"],
     "id": 3
+  },
+  {
+    "title": "Cryptopals #3 - Single-byte XOR Cipher",
+    "date": "2025-02-16",
+    "text": "<p>Cryptopals challenge 3 first provides a hex-encoded string and tells the programmer 'Find the key, decrypt the message.' They give a hint to devise a method to score a decrypted string and that, once completed, the programmer can make 'ETAOIN SHRDLU' jokes on Twitter. This all suggests frequency analysis to be the way forward</p><p>ETAOIN SHRDLU are the most frequently used letters in the English language and refers to a practice in an earlier era of publishing. When setting up the type for a newspaper, those letters formed the first two columns of available letters. If a mistake were made, rather than spending time sorting out the incorrect letter, the operator would simply run a finger down the first two columns, resulting in ETAOIN SHRDLU and acting as a flag to remove the line entirely. Sometimes, the operators would miss the flag and ETAOIN SHRDLU would make it into print.</p><p>The challenge itself calls for the programmer to try every key possible and generate a score using frequency analysis to judge if the decrypted text resembles English. There are a few things to consider: frequency of the letters themselves (ETAOIN SHRDLU), frequency of spaces and punctuation, and existence of non-printable characters. When scoring, I gave points for frequent letters and punctuation and penalized for non-printable characters.You can see my solution <a href='https://github.com/iamtimleonard/cryptopals/blob/main/cmd/set_1/challenge_3/main.go'>here</a></p>",
+    "tags": ["blog", "cryptopals", "cryptography", "go"],
+    "id": 4
   }
 ]
